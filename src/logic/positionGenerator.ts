@@ -1,5 +1,3 @@
-import { PostMiddlewareFunction } from "mongoose";
-
 type Position = {
   x: number;
   y: number;
