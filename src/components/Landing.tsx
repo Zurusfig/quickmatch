@@ -7,7 +7,7 @@ type LandingProps = {
 
 export default function Landing({ highScore, onStart }: LandingProps) {
   return (
-    <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center">
+    <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center font-suse">
       <div>
         <h1 className="text-5xl font-black">QuickMatcH</h1>
       </div>

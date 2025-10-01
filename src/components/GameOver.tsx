@@ -10,7 +10,7 @@ export default function GameOver({
   onRestart,
 }: GameOverProps) {
   return (
-    <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center">
+    <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center font-suse">
       <div>
         <h1 className="text-5xl font-black">Game Over</h1>
       </div>

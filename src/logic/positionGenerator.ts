@@ -12,6 +12,7 @@ export function generateNonOverlappingPositions(
 ) {
   const positions: Position[] = [];
   const maxAttempts = 100;
+  let baseSizeMultiplier = 1;
 
   for (let i = 0; i < count; i++) {
     let attempts = 0;
@@ -21,13 +22,13 @@ export function generateNonOverlappingPositions(
     while (!validPosition && attempts < maxAttempts) {
       const angle = Math.random() * 2 * Math.PI;
       const radius = Math.sqrt(Math.random()) * maxRadius;
-      const size = 24 + Math.random() * 32;
-      const padding = size * 0.8;
+      const baseSize = (24 + Math.random() * 32) * baseSizeMultiplier;
+      const padding = baseSize * 0.6;
 
       newPos = {
         x: radius * Math.cos(angle),
         y: radius * Math.sin(angle),
-        size: size + padding,
+        size: baseSize + padding,
       };
 
       validPosition = positions.every(pos => {
@@ -40,7 +41,13 @@ export function generateNonOverlappingPositions(
       attempts++;
     }
 
-    if (validPosition) positions.push(newPos);
+    if (!validPosition) {
+      baseSizeMultiplier *= 0.9;
+      i--;
+      continue;
+    }
+
+    positions.push(newPos);
   }
 
   return positions;
