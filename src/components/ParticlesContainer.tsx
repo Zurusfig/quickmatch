@@ -3,7 +3,7 @@
 import { SYMBOLS } from "@/logic/generate";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-import type { IOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export default function ParticlesContainer() {
   // this customizes the component tsParticles installation
@@ -11,43 +11,58 @@ export default function ParticlesContainer() {
     await loadSlim(main);
   };
 
-  const particleOptions: IOptions = {
+  const particleOptions: ISourceOptions = {
     fullScreen: { enable: true, zIndex: 1 },
     particles: {
       number: {
         value: 20,
         density: {
           enable: true,
-          value_area: 800, 
-          factor: 1000, 
-          height: 0,
-          width: 0,
+          area: 800,
         },
       },
       shape: {
-        type: "char",
-        character: [
-          {
+        type: "character",
+        options: {
+          character: {
             value: SYMBOLS,
             font: "Verdana",
             style: "",
             weight: "400",
             fill: true,
           },
-        ],
+        },
       },
-      size: { value: 32, random: { enable: true, minimumValue: 10 } },
-      opacity: { value: 0.7, random: { enable: true, minimumValue: 0.3 } },
+      size: {
+        value: 32,
+        random: {
+          enable: true,
+          minimumValue: 10,
+        },
+      },
+      opacity: {
+        value: 0.7,
+        random: {
+          enable: true,
+          minimumValue: 0.3,
+        },
+      },
       move: {
         enable: true,
         speed: 2,
         random: true,
         direction: "none",
-        outModes: { default: "out" },
+        outModes: {
+          default: "out",
+        },
       },
-      links: { enable: false },
+      links: {
+        enable: false,
+      },
     },
-    background: { color: "transparent", mode: "default" },
+    background: {
+      color: "transparent",
+    },
   };
 
   return (
