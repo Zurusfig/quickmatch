@@ -7,8 +7,7 @@ import GameOver from "@/components/GameOver";
 import Card from "@/components/Card";
 import { generateCardPair, SYMBOLS } from "@/logic/generate";
 import { useState, useEffect } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+
 
 export default function Home() {
   const [score, setScore] = useState(0);
