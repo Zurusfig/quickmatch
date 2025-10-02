@@ -1,3 +1,5 @@
+import { generateNonOverlappingPositions } from "@/logic/positionGenerator";
+
 export const SYMBOLS = [
   // Faces (kept only distinct ones)
   "😀","😂","😍","🥳","😎","🤯","😭","😡","😱","🥶","🥵","🤢","😴",
@@ -44,8 +46,20 @@ export function generateCardPair(pool:string[] ,size: number = 8) {
     const poolB = pool.filter(s => s!==shared && !cardAExtras.includes(s));
     const cardBExtras = shuffle(poolB).slice(0,size-1);
 
-    const cardA = shuffle([...cardAExtras,shared]);
-    const cardB = shuffle([...cardBExtras,shared]);
+    const cardA = createCard([...cardAExtras,shared]);
+    const cardB = createCard([...cardBExtras,shared]);
 
     return {cardA, cardB, shared};
+}
+
+function createCard(symbols: string[]) {
+    const positions = generateNonOverlappingPositions(symbols.length, 100);
+      
+    return symbols.map((s, i) => ({
+        symbol: s,
+        x: positions[i].x,
+        y: positions[i].y,
+        size: positions[i].size,
+        rotation: Math.floor(Math.random() * 360)
+    }))
 }
