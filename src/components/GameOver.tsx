@@ -1,11 +1,16 @@
 "use client";
-import ParticlesContainer from "./ParticlesContainer";
+import dynamic from 'next/dynamic';
 
 type GameOverProps = {
   score: number;
   highScore: number;
   onRestart: () => void;
 };
+
+const ParticlesContainer = dynamic(
+  () => import('@/components/ParticlesContainer'),
+  { ssr: false } // Crucial setting! Prevents it from running on the server
+);
 
 export default function GameOver({
   score,

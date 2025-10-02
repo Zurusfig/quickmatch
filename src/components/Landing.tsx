@@ -1,11 +1,15 @@
 "use client";
-
-import ParticlesContainer from "./ParticlesContainer";
+import dynamic from 'next/dynamic';
 
 type LandingProps = {
   highScore: number;
   onStart: () => void;
 };
+
+const ParticlesContainer = dynamic(
+  () => import('@/components/ParticlesContainer'),
+  { ssr: false } // Crucial setting! Prevents it from running on the server
+);
 
 export default function Landing({ highScore, onStart }: LandingProps) {
 
