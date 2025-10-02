@@ -1,6 +1,5 @@
 "use client";
 
-import Particles from "react-tsparticles";
 import ParticlesContainer from "./ParticlesContainer";
 
 type LandingProps = {

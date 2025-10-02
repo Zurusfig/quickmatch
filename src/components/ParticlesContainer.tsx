@@ -2,7 +2,6 @@
 
 import { SYMBOLS } from "@/logic/generate";
 import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 import { loadSlim } from "tsparticles-slim";
 
 export default function ParticlesContainer() {

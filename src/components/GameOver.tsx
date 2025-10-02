@@ -1,4 +1,4 @@
-import { Particle } from "tsparticles-engine";
+"use client";
 import ParticlesContainer from "./ParticlesContainer";
 
 type GameOverProps = {
