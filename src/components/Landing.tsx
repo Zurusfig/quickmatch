@@ -18,10 +18,10 @@ export default function Landing({ highScore, onStart }: LandingProps) {
       >
         Start
       </button>
-      <p className="text-grey-700 text-sm">
-        Find the matching symbols. Score as much as you can in 60s!
+      <p className="text-grey-700 text-sm text-center">
+        Find the matching symbols. <span className="block sm:inline">Score as much as you can in 60s!</span>
       </p>
-      <p className="text-grey-700 text-xs">
+      <p className="text-grey-700 text-xs text-center">
         Created by Zagif.
       </p>
     </div>
