@@ -22,6 +22,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
@@ -30,7 +31,6 @@ export default function RootLayout({
         <main className="flex flex-col h-[100vh] w-[100vw] justify-center items-center bg-gradient-to-b from-amber-200 to-amber-100">
           {children}
         </main>
-        
       </body>
     </html>
   );
