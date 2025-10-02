@@ -18,7 +18,10 @@ export default function ParticlesContainer() {
         value: 20,
         density: {
           enable: true,
-          area: 800, // FIXED: Changed value_area to area
+          value_area: 800, 
+          factor: 1000, 
+          height: 0,
+          width: 0,
         },
       },
       shape: {
@@ -29,7 +32,7 @@ export default function ParticlesContainer() {
             font: "Verdana",
             style: "",
             weight: "400",
-            fill: true, // FIXED: Added required fill property
+            fill: true,
           },
         ],
       },
