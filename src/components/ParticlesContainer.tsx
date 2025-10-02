@@ -3,6 +3,7 @@
 import { SYMBOLS } from "@/logic/generate";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
+import type { IOptions } from "tsparticles-engine";
 
 export default function ParticlesContainer() {
   // this customizes the component tsParticles installation
@@ -10,10 +11,16 @@ export default function ParticlesContainer() {
     await loadSlim(main);
   };
 
-  const particleOptions = {
+  const particleOptions: IOptions = {
     fullScreen: { enable: true, zIndex: 1 },
     particles: {
-      number: { value: 20 },
+      number: {
+        value: 20,
+        density: {
+          enable: true,
+          area: 800, // FIXED: Changed value_area to area
+        },
+      },
       shape: {
         type: "char",
         character: [
@@ -22,6 +29,7 @@ export default function ParticlesContainer() {
             font: "Verdana",
             style: "",
             weight: "400",
+            fill: true, // FIXED: Added required fill property
           },
         ],
       },
@@ -29,13 +37,14 @@ export default function ParticlesContainer() {
       opacity: { value: 0.7, random: { enable: true, minimumValue: 0.3 } },
       move: {
         enable: true,
-        speed: { min: 1, max: 3 },
+        speed: 2,
+        random: true,
         direction: "none",
         outModes: { default: "out" },
       },
       links: { enable: false },
     },
-    background: { color: "transparent" },
+    background: { color: "transparent", mode: "default" },
   };
 
   return (
