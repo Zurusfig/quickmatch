@@ -15,7 +15,7 @@ export default function Card({ symbols, onSelect }: CardProps) {
           <button
             key={i}
             onClick={() => onSelect(s.symbol)}
-            className="absolute cursor-pointer"
+            className="absolute cursor-pointer hover:scale-110 transition-[scale] duration-200 ease-in-out"
             style={{
               left: `calc(50% + ${s.x}px)`,
               top: `calc(50% + ${s.y}px)`,

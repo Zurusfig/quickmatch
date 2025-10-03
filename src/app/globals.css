@@ -11,7 +11,16 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-suse: "SUSE Mono", monospace; 
+  --font-suse: "SUSE Mono", monospace;
+}
+
+@theme {
+  --animate-wiggle: wiggle 0.5s ease-in-out;
+  @keyframes wiggle {
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(5px); color:red; }
+    50% { transform: translateX(-5px); color:red; }
+  }
 }
 
 body {

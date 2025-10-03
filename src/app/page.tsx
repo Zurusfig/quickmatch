@@ -6,13 +6,13 @@ import HUD from "@/components/HUD";
 import GameOver from "@/components/GameOver";
 import Card from "@/components/Card";
 import { generateCardPair, SYMBOLS } from "@/logic/generate";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect,useRef, RefObject } from "react";
 
 export default function Home() {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
   const [highScore, setHighScore] = useState(0);
+  const scoreRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<"landing" | "playing" | "ended">(
     "landing"
   );
@@ -39,6 +39,10 @@ export default function Home() {
       setCardPair(generateCardPair(SYMBOLS, 8));
     } else {
       setScore( s => Math.max(0, s-1));
+      scoreRef.current?.classList.add("animate-wiggle");
+      setTimeout(() => {
+        scoreRef.current?.classList.remove("animate-wiggle");
+      }, 500);
     }
   }
 
@@ -71,7 +75,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-row font-suse ">
-        <HUD score={score} highScore={highScore} timeLeft={timeLeft} />
+        <HUD score={score} highScore={highScore} timeLeft={timeLeft} scoreRef={scoreRef} />
         {/* <Landing highScore={0} onStart={() => {}} /> */}
         {/* <GameOver score={0} highScore={0} onRestart={() => {}} /> */}
       </div>
