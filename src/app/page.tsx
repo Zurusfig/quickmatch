@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-row font-suse ">
-        <HUD score={score} highScore={highScore} timeLeft={timeLeft} scoreRef={scoreRef} />
+        <HUD score={score} highScore={highScore} timeLeft={timeLeft} scoreRef={scoreRef as RefObject<HTMLDivElement>} />
         {/* <Landing highScore={0} onStart={() => {}} /> */}
         {/* <GameOver score={0} highScore={0} onRestart={() => {}} /> */}
       </div>
