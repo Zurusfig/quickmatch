@@ -68,7 +68,7 @@ export default function ParticlesContainer() {
   return (
     <div>
       <Particles
-        className="absolute top-0 left-0 w-[100vw] h-[100vh] "
+        className="absolute top-0 left-0 w-[100vw] h-[100vh] z-0"
         id="tsparticles"
         init={particlesInit}
         options={particleOptions}

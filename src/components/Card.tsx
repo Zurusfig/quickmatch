@@ -6,7 +6,7 @@ type CardProps = {
 };
 
 export default function Card({ symbols, onSelect }: CardProps) {
-    const positions = generateNonOverlappingPositions(symbols.length, 100);
+    //const positions = generateNonOverlappingPositions(symbols.length, 100);
   
     return (
     <div className="relative w-64 h-64 rounded-full bg-white shadow-lg flex justify-center items-center">
