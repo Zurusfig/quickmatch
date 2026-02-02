@@ -6,7 +6,8 @@ import HUD from "@/components/HUD";
 import GameOver from "@/components/GameOver";
 import Card from "@/components/Card";
 import { generateCardPair, SYMBOLS } from "@/logic/generate";
-import { useState, useEffect,useRef, RefObject } from "react";
+import { useState, useEffect, useRef, RefObject } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const [score, setScore] = useState(0);
@@ -17,6 +18,8 @@ export default function Home() {
     "landing"
   );
   const [cardPair, setCardPair] = useState(generateCardPair(SYMBOLS, 8));
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (phase !== "playing") return;
@@ -38,7 +41,7 @@ export default function Home() {
       setScore((s) => s + 1);
       setCardPair(generateCardPair(SYMBOLS, 8));
     } else {
-      setScore( s => Math.max(0, s-1));
+      setScore(s => Math.max(0, s - 1));
       scoreRef.current?.classList.add("animate-wiggle");
       setTimeout(() => {
         scoreRef.current?.classList.remove("animate-wiggle");
@@ -54,14 +57,33 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const saved = localStorage.getItem("highScore");
-    if(saved) setHighScore(Number(saved));
-  },[]);
+    const saved = sessionStorage.getItem("highScore");
+    const fetchHighScore = async () => {
+      const res = await fetch("api/score");
+      const data = await res.json();
+      setHighScore(data.highScore);
+    }
+    fetchHighScore();
+    if (saved && Number(saved) > highScore) setHighScore(Number(saved));
+  }, []);
 
   useEffect(() => {
     if (phase === "ended" && score > highScore) {
       setHighScore(score);
-      localStorage.setItem("highScore", String(score));
+      sessionStorage.setItem("highScore", String(score));
+      if (session?.user) {
+        fetch("/api/score", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ score })
+        }).then(res => {
+          if (res.ok) {
+            console.log("Score saved!")
+          }
+        })
+      }
     }
   }, [phase]);
 
@@ -80,9 +102,9 @@ export default function Home() {
         {/* <GameOver score={0} highScore={0} onRestart={() => {}} /> */}
       </div>
       <div className="flex flex-col gap-4 mt-6">
-          <Card symbols={cardPair.cardA} onSelect={handlePick} />
-          <Card symbols={cardPair.cardB} onSelect={handlePick} />
-        </div>
+        <Card symbols={cardPair.cardA} onSelect={handlePick} />
+        <Card symbols={cardPair.cardB} onSelect={handlePick} />
+      </div>
     </div>
   );
 }
