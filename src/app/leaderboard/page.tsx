@@ -133,7 +133,7 @@ function TopGamesPlayedBoard() {
 
 export default function Leaderboard() {
     return (
-        <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center">
+        <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center min-h-[500px] md:min-h-screen">
             <div>
                 <h1 className="text-3xl font-black z-100">Leader Board</h1>
             </div>

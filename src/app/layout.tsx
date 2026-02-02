@@ -35,7 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="flex flex-col h-[100vh] w-[100vw] justify-center items-center bg-gradient-to-tl from-amber-100 via-yellow-200 to-amber-100 overscroll-contain overflow-hidden">
+        <main className="flex flex-col min-h-screen w-full justify-center items-center bg-gradient-to-tl from-amber-100 via-yellow-200 to-amber-100 overscroll-contain">
           <AuthProvider>
             {children}
           </AuthProvider>
