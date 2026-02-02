@@ -68,9 +68,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (phase === "ended" && score > highScore) {
-      setHighScore(score);
-      sessionStorage.setItem("highScore", String(score));
+    if (phase === "ended") {
+      if (score > highScore) {
+        setHighScore(score);
+        sessionStorage.setItem("highScore", String(score));
+      }
       if (session?.user) {
         fetch("/api/score", {
           method: "POST",
