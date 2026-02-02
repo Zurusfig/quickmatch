@@ -8,10 +8,6 @@ import { useSession } from "next-auth/react";
 
 function LoginButton() {
     const { data: session, status } = useSession();
-
-    console.log(session);
-    console.log(status);
-
     if (status === "loading") {
         return (
             <div className="flex items-center text-amber-600 font-bold cursor-pointer m-8 bg-amber-200 p-2 rounded-full border-2 border-amber-600 opacity-50 hover:opacity-100 transition-[opacity] duration-200 ease-in-out">
