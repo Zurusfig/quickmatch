@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="flex flex-col h-[100vh] w-[100vw] justify-center items-center bg-gradient-to-tl from-amber-100 via-yellow-200 to-amber-100 overscroll-contain overflow-hidden">
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
           <SpeedInsights />
         </main>
       </body>

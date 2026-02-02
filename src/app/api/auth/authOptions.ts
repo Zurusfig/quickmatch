@@ -15,13 +15,19 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async session({ session, user}) {
-        if (session.user) {
-            session.user.id = user.id;
+    async session({ session, user, token }) {
+      if (session?.user) {
+        // 1. If using Database (Adapter), 'user' is defined
+        if (user) {
+          session.user.id = user.id;
         }
-        return session;
-    }
+        // 2. If using JWT (Fallback/Old Cookie), 'token' is defined
+        // The user ID is usually stored in 'token.sub'
+        else if (token && token.sub) {
+          session.user.id = token.sub;
+        }
+      }
+      return session;
+    },
   },
 };
-
-

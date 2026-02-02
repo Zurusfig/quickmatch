@@ -30,7 +30,13 @@ export default function GameOver({
       >
         Play Again
       </button>
-      <ParticlesContainer/>
+      <button
+        onClick={() => window.location.href = "/"}
+        className="bg-amber-400 p-2 px-5 rounded-lg text-2xl lg:text-3xl hover:bg-amber-300 cursor-pointer hover:text-gray-700 z-100"
+      >
+        Main Menu
+      </button>
+      <ParticlesContainer />
     </div>
   );
 }
