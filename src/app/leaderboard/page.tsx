@@ -133,11 +133,11 @@ function TopGamesPlayedBoard() {
 
 export default function Leaderboard() {
     return (
-        <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center min-h-[500px] md:min-h-screen">
+        <div className="flex flex-col gap-[1rem] w-[100%] justify-center items-center md:min-h-screen pt-[2rem] pb-[8rem] md:pb-0 z-10">
             <div>
                 <h1 className="text-3xl font-black z-100">Leader Board</h1>
             </div>
-            <div className="flex flex-col md:flex-row gap-[6rem] p-[1rem]">
+            <div className="flex flex-col md:flex-row gap-[2rem] p-[1rem]">
                 <TopScoreBoard />
                 <TopGamesPlayedBoard />
             </div>
@@ -145,7 +145,7 @@ export default function Leaderboard() {
                 href="/"
                 className="flex justify-center items-center bg-amber-400 p-2 w-[20%] rounded-lg text-xl hover:bg-amber-300 cursor-pointer hover:text-gray-700 z-100"
             >
-                Back
+                <div>Back</div>
             </Link>
             <ParticlesContainer />
         </div>
