@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
 import { NextRequest } from "next/server";
 import UserStats from "@/models/UserStats";
 import { NextResponse } from "next/server";
+import { connectDb } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   try {
-    await mongoose.connect(process.env.MONGODB_URI!);
+    await connectDb();
     const players = await UserStats.find().sort({ highScore: -1 }).limit(5);
     return NextResponse.json(players);
   } catch (error) {
