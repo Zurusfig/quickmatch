@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/authOptions";
 import { NextRequest, NextResponse } from "next/server";
 import UserStats from "@/models/UserStats";
+import { connectDb } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
-    await mongoose.connect(process.env.MONGODB_URI!);
+    await connectDb();
     const session = await getServerSession(authOptions);
     if (!session || !session.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: NextRequest) {
   try {
-    await mongoose.connect(process.env.MONGODB_URI!);
+    await connectDb();
     const session = await getServerSession(authOptions);
     if (!session || !session.user) {
       return NextResponse.json({
