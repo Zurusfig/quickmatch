@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import UserStats from "@/models/UserStats";
 import { connectDb } from "@/lib/db";
 
+const MAX_SCORE = 120;
+
 export async function POST(req: Request) {
   try {
     await connectDb();
@@ -12,6 +14,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     const { score } = await req.json();
+
+    if (typeof score !== "number") {
+      return NextResponse.json({ error: "Invalid score" }, { status: 400 });
+    }
+
+    if (score < 0 || score > 120 || !Number.isInteger(score)) {
+      return NextResponse.json(
+        { error: `Score must be a whole number between 0 and ${MAX_SCORE}` },
+        { status: 400 },
+      );
+    }
+
     const userId = session.user.id;
     const username = session.user.name;
 
